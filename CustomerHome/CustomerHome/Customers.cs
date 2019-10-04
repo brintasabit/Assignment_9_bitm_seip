@@ -58,7 +58,7 @@ namespace CustomerHome
                 {
                     labelContact.Text = "Contact Is 11 Digit";
                 }
-                else if (_customer.Contact.Length > 0)
+                else if (_customer.Contact.Length > 11)
                 {
                     labelContact.Text = "Contact Is Not More Than 11 Digit";
                 }
@@ -97,6 +97,24 @@ namespace CustomerHome
         private void Customers_Load(object sender, EventArgs e)
         {
             comboBoxDistrict.DataSource = _customerManager.ComboBoxDistricts();
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            _customer.Code = textBoxCode.Text;
+            _customer.Contact = textBoxContact.Text;
+            List<Customer> customers = _customerManager.SearchCustomers(_customer);
+            if (customers.Count==0)
+            {
+                MessageBox.Show("Not Exists");
+                dataGridViewCustomer.DataSource ="";
+
+            }
+            else
+            {
+               // MessageBox.Show("Customer Exists");
+                dataGridViewCustomer.DataSource = _customerManager.ShowCustomers(_customer);
+            }
         }
     }
 }
