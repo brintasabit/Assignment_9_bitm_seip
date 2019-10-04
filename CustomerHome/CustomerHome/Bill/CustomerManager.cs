@@ -31,5 +31,10 @@ namespace CustomerHome.Bill
         {
             return _customerRepository.SearchCustomers(_customer);
         }
+
+        public List<Customer> ShowAllCustomers(Customer _customer)
+        {
+            return _customerRepository.ShowAllCustomers(_customer);
+        }
     }
 }

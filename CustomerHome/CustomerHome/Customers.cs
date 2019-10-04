@@ -116,5 +116,23 @@ namespace CustomerHome
                 dataGridViewCustomer.DataSource = _customerManager.ShowCustomers(_customer);
             }
         }
+
+        private void dataGridViewCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex>=0)
+            {
+                DataGridViewRow dataGridViewRow = dataGridViewCustomer.Rows[e.RowIndex];
+                textBoxCode.Text = dataGridViewRow.Cells["Code"].Value.ToString();
+                textBoxName.Text= dataGridViewRow.Cells["Name"].Value.ToString();
+                textBoxAddress.Text= dataGridViewRow.Cells["Address"].Value.ToString();
+                textBoxContact.Text= dataGridViewRow.Cells["Contact"].Value.ToString();
+                comboBoxDistrict.Text= dataGridViewRow.Cells["District"].Value.ToString();
+            }
+        }
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            dataGridViewCustomer.DataSource = _customerManager.ShowAllCustomers(_customer);
+        }
     }
 }

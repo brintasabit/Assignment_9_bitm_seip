@@ -47,6 +47,7 @@
             this.SearchButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.dataGridViewCustomer = new System.Windows.Forms.DataGridView();
+            this.Update = new System.Windows.Forms.DataGridViewLinkColumn();
             this.SerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +57,7 @@
             this.districtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelDistrict = new System.Windows.Forms.Label();
+            this.UpdateButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.districtBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
@@ -184,7 +186,7 @@
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(451, 317);
+            this.SearchButton.Location = new System.Drawing.Point(392, 303);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(106, 36);
             this.SearchButton.TabIndex = 7;
@@ -194,7 +196,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(603, 317);
+            this.SaveButton.Location = new System.Drawing.Point(544, 303);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(106, 36);
             this.SaveButton.TabIndex = 6;
@@ -207,6 +209,7 @@
             this.dataGridViewCustomer.AutoGenerateColumns = false;
             this.dataGridViewCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Update,
             this.SerialNumber,
             this.idDataGridViewTextBoxColumn,
             this.codeDataGridViewTextBoxColumn,
@@ -215,17 +218,24 @@
             this.contactDataGridViewTextBoxColumn,
             this.districtDataGridViewTextBoxColumn});
             this.dataGridViewCustomer.DataSource = this.customerBindingSource;
-            this.dataGridViewCustomer.Location = new System.Drawing.Point(93, 359);
+            this.dataGridViewCustomer.Location = new System.Drawing.Point(56, 357);
             this.dataGridViewCustomer.Name = "dataGridViewCustomer";
             this.dataGridViewCustomer.RowTemplate.Height = 28;
-            this.dataGridViewCustomer.Size = new System.Drawing.Size(990, 263);
+            this.dataGridViewCustomer.Size = new System.Drawing.Size(964, 263);
             this.dataGridViewCustomer.TabIndex = 6;
+            // 
+            // Update
+            // 
+            this.Update.HeaderText = "Action";
+            this.Update.Name = "Update";
+            this.Update.Text = "Update";
             // 
             // SerialNumber
             // 
             this.SerialNumber.HeaderText = "Sl";
             this.SerialNumber.Name = "SerialNumber";
             this.SerialNumber.ReadOnly = true;
+            this.SerialNumber.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -276,11 +286,22 @@
             this.labelDistrict.Size = new System.Drawing.Size(0, 20);
             this.labelDistrict.TabIndex = 4;
             // 
+            // UpdateButton
+            // 
+            this.UpdateButton.Location = new System.Drawing.Point(693, 303);
+            this.UpdateButton.Name = "UpdateButton";
+            this.UpdateButton.Size = new System.Drawing.Size(98, 36);
+            this.UpdateButton.TabIndex = 8;
+            this.UpdateButton.Text = "Update";
+            this.UpdateButton.UseVisualStyleBackColor = true;
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
+            // 
             // Customers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1175, 690);
+            this.ClientSize = new System.Drawing.Size(1099, 690);
+            this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.dataGridViewCustomer);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.SearchButton);
@@ -330,6 +351,10 @@
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.BindingSource districtBindingSource;
         private System.Windows.Forms.DataGridView dataGridViewCustomer;
+        private System.Windows.Forms.BindingSource customerBindingSource;
+        private System.Windows.Forms.Label labelDistrict;
+        private System.Windows.Forms.Button UpdateButton;
+        private System.Windows.Forms.DataGridViewLinkColumn Update;
         private System.Windows.Forms.DataGridViewTextBoxColumn SerialNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
@@ -337,8 +362,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn districtDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource customerBindingSource;
-        private System.Windows.Forms.Label labelDistrict;
     }
 }
 
