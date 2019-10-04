@@ -12,7 +12,7 @@ namespace CustomerHome.Bill
     {
         CustomerRepository _customerRepository=new CustomerRepository();
 
-        public List<Customer> SaveInfo(Customer _customer)
+        public bool SaveInfo(Customer _customer)
         {
             return _customerRepository.SaveInfo(_customer);
         }
@@ -20,6 +20,16 @@ namespace CustomerHome.Bill
         public List<District> ComboBoxDistricts()
         {
             return _customerRepository.ComboBoxDistricts();
+        }
+
+        public List<Customer> ShowCustomers(Customer _customer)
+        {
+            return _customerRepository.ShowCustomers(_customer);
+        }
+
+        public List<Customer> SearchCustomers(Customer _customer)
+        {
+            return _customerRepository.SearchCustomers(_customer);
         }
     }
 }

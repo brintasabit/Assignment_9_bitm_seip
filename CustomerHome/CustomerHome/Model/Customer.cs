@@ -8,6 +8,7 @@ namespace CustomerHome.Model
 {
     public class Customer
     {
+        public string Id { set; get; }
         public string Code { set; get; }
         public string Name { set; get; }
         public string Address { set; get; }

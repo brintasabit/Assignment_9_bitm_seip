@@ -11,19 +11,17 @@ namespace CustomerHome.Repository
 {
     class CustomerRepository
     {
-        public List<Customer> SaveInfo(Customer _customer)
+        public bool SaveInfo(Customer _customer)
         {
-            List<Customer>customers=new List<Customer>();
+           // List<Customer>customers=new List<Customer>();
             string connectionString = @"Server=BRINTA-PC; Database=CustomersInformation; Integrated Security=True";
             SqlConnection sqlConnection = new SqlConnection(connectionString);
             string commandString = @"insert into Customers values('"+_customer.Code+"','"+_customer.Name+"','"+_customer.Address+"','"+_customer.Contact+"','"+_customer.District+"')";
             SqlCommand sqlCommand = new SqlCommand(commandString, sqlConnection);
-            string commandString2 = @"select * from Customers";
-            SqlCommand sqlCommand2 = new SqlCommand(commandString2, sqlConnection);
             sqlConnection.Open();
-            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-            
-            while (sqlDataReader.Read())
+            int isSaved = sqlCommand.ExecuteNonQuery();
+            //SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+           /* while (sqlDataReader.Read())
             {
                 Customer customer=new Customer();
                 customer.Code = sqlDataReader["Code"].ToString();
@@ -32,9 +30,13 @@ namespace CustomerHome.Repository
                 customer.Contact = sqlDataReader["Contact"].ToString();
                 customer.District = sqlDataReader["District"].ToString();
                 customers.Add(customer);
-            }
-            sqlConnection.Close();
-            return customers;
+            }*/
+           if (isSaved>0)
+           {
+               return true;
+           }
+           sqlConnection.Close();
+           return false;
         }
 
         public List<District> ComboBoxDistricts()
@@ -54,6 +56,55 @@ namespace CustomerHome.Repository
                 districts.Add(district);
             }
             return districts;
+        }
+
+        public List<Customer> ShowCustomers(Customer _customer)
+        {
+            List<Customer>customers=new List<Customer>();
+            string connectionString = @"Server=BRINTA-PC; Database=CustomersInformation; Integrated Security=True";
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            string commandString = @"select * from Customers";
+            SqlCommand sqlCommand = new SqlCommand(commandString, sqlConnection);
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read())
+            {
+                 Customer customer=new Customer();
+                 customer.Id = sqlDataReader["Id"].ToString();
+                 customer.Code = sqlDataReader["Code"].ToString();
+                 customer.Name = sqlDataReader["Name"].ToString();
+                 customer.Address = sqlDataReader["Address"].ToString();
+                 customer.Contact = sqlDataReader["Contact"].ToString();
+                 customer.District = sqlDataReader["District"].ToString();
+                 customers.Add(customer);
+            }
+            sqlConnection.Close();
+            return customers;
+
+        }
+
+        public List<Customer> SearchCustomers(Customer _customer)
+        {
+            List<Customer>customers=new List<Customer>();
+            string connectionString = @"Server=BRINTA-PC; Database=CustomersInformation; Integrated Security=True";
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            string commandString = @"select * from Customers";
+            SqlCommand sqlCommand = new SqlCommand(commandString, sqlConnection);
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read())
+            {
+                Customer customer = new Customer();
+                customer.Id = sqlDataReader["Id"].ToString();
+                customer.Code = sqlDataReader["Code"].ToString();
+                customer.Name = sqlDataReader["Name"].ToString();
+                customer.Address = sqlDataReader["Address"].ToString();
+                customer.Contact = sqlDataReader["Contact"].ToString();
+                customer.District = sqlDataReader["District"].ToString();
+                customers.Add(customer);
+            }
+            sqlConnection.Close();
+            return customers;
         }
     }
 }
