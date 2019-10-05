@@ -139,8 +139,17 @@ namespace CustomerHome
                 _customer.Address = textBoxAddress.Text;
                 _customer.Contact = textBoxContact.Text;
                 _customer.District = comboBoxDistrict.Text;
+                List<Customer>customers=new List<Customer>();
+                if (customers.Count==0)
+                {
+                    dataGridViewCustomer.DataSource = _customerManager.UpdateCustomer(_customer);
+                }
+                else
+                {
+                    MessageBox.Show("Not Updated");
+                    
+                }
                 
-                dataGridViewCustomer.DataSource = _customerManager.UpdateCustomer(_customer);
             }
             catch (Exception exception)
             {
