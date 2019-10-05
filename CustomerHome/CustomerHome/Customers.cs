@@ -128,22 +128,28 @@ namespace CustomerHome
             }
         }
 
-        private void dataGridViewCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex>=0)
-            {
-                DataGridViewRow dataGridViewRow = dataGridViewCustomer.Rows[e.RowIndex];
-                textBoxCode.Text = dataGridViewRow.Cells["Code"].Value.ToString();
-                textBoxName.Text= dataGridViewRow.Cells["Name"].Value.ToString();
-                textBoxAddress.Text= dataGridViewRow.Cells["Address"].Value.ToString();
-                textBoxContact.Text= dataGridViewRow.Cells["Contact"].Value.ToString();
-                comboBoxDistrict.Text= dataGridViewRow.Cells["District"].Value.ToString();
-            }
-        }
+        
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             dataGridViewCustomer.DataSource = _customerManager.ShowAllCustomers(_customer);
+        }
+
+
+
+        private void dataGridViewCustomer_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            dataGridViewCustomer.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
+        }
+
+        private void dataGridViewCustomer_MouseClick(object sender, MouseEventArgs e)
+        {
+            //labelCode.Text= dataGridViewCustomer.SelectedRows[0].Cells[0].Value.ToString();
+            textBoxCode.Text = dataGridViewCustomer.SelectedRows[0].Cells[2].Value.ToString();
+            textBoxName.Text= dataGridViewCustomer.SelectedRows[0].Cells[3].Value.ToString();
+            textBoxAddress.Text= dataGridViewCustomer.SelectedRows[0].Cells[4].Value.ToString();
+            textBoxContact.Text= dataGridViewCustomer.SelectedRows[0].Cells[5].Value.ToString();
+            comboBoxDistrict.Text= dataGridViewCustomer.SelectedRows[0].Cells[6].Value.ToString();
         }
     }
 }

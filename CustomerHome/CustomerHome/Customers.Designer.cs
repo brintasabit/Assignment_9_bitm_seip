@@ -47,7 +47,6 @@
             this.SearchButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.dataGridViewCustomer = new System.Windows.Forms.DataGridView();
-            this.Update = new System.Windows.Forms.DataGridViewLinkColumn();
             this.SerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -206,10 +205,11 @@
             // 
             // dataGridViewCustomer
             // 
+            this.dataGridViewCustomer.AllowUserToAddRows = false;
+            this.dataGridViewCustomer.AllowUserToDeleteRows = false;
             this.dataGridViewCustomer.AutoGenerateColumns = false;
             this.dataGridViewCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Update,
             this.SerialNumber,
             this.idDataGridViewTextBoxColumn,
             this.codeDataGridViewTextBoxColumn,
@@ -220,15 +220,13 @@
             this.dataGridViewCustomer.DataSource = this.customerBindingSource;
             this.dataGridViewCustomer.Location = new System.Drawing.Point(56, 357);
             this.dataGridViewCustomer.Name = "dataGridViewCustomer";
+            this.dataGridViewCustomer.ReadOnly = true;
             this.dataGridViewCustomer.RowTemplate.Height = 28;
+            this.dataGridViewCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewCustomer.Size = new System.Drawing.Size(964, 263);
             this.dataGridViewCustomer.TabIndex = 6;
-            // 
-            // Update
-            // 
-            this.Update.HeaderText = "Action";
-            this.Update.Name = "Update";
-            this.Update.Text = "Update";
+            this.dataGridViewCustomer.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridViewCustomer_RowPostPaint);
+            this.dataGridViewCustomer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewCustomer_MouseClick);
             // 
             // SerialNumber
             // 
@@ -242,6 +240,7 @@
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Visible = false;
             // 
             // codeDataGridViewTextBoxColumn
@@ -249,30 +248,36 @@
             this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
             this.codeDataGridViewTextBoxColumn.HeaderText = "Code";
             this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // addressDataGridViewTextBoxColumn
             // 
             this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
             this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // contactDataGridViewTextBoxColumn
             // 
+            this.contactDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
             this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
             this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
+            this.contactDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // districtDataGridViewTextBoxColumn
             // 
             this.districtDataGridViewTextBoxColumn.DataPropertyName = "District";
             this.districtDataGridViewTextBoxColumn.HeaderText = "District";
             this.districtDataGridViewTextBoxColumn.Name = "districtDataGridViewTextBoxColumn";
+            this.districtDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // customerBindingSource
             // 
@@ -354,7 +359,6 @@
         private System.Windows.Forms.BindingSource customerBindingSource;
         private System.Windows.Forms.Label labelDistrict;
         private System.Windows.Forms.Button UpdateButton;
-        private System.Windows.Forms.DataGridViewLinkColumn Update;
         private System.Windows.Forms.DataGridViewTextBoxColumn SerialNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
