@@ -30,7 +30,8 @@ namespace CustomerHome
                 _customer.Contact = textBoxContact.Text;
                 _customer.District = comboBoxDistrict.Text;
                 List<Customer> customers = _customerManager.SearchCustomers(_customer);
-                if (customers.Contains(_customer))
+                List<Customer> customers2 = _customerManager.SearchCustomersContact(_customer);
+                if (customers.Count>0)
                 {
                     labelCode.Text = "Code Exists";
                 }
@@ -49,6 +50,10 @@ namespace CustomerHome
                 else if (_customer.Name.Length == 0)
                 {
                     labelName.Text = "Name Can't Be Empty";
+                }
+                else if (customers2.Count>0)
+                {
+                    labelContact.Text = "Contact Number Exists!";
                 }
                 else if (_customer.Contact.Length==0)
                 {
@@ -104,11 +109,17 @@ namespace CustomerHome
             _customer.Code = textBoxCode.Text;
             _customer.Contact = textBoxContact.Text;
             List<Customer> customers = _customerManager.SearchCustomers(_customer);
+            List<Customer> customers2 = _customerManager.SearchCustomersContact(_customer);
             if (customers.Count==0)
             {
                 MessageBox.Show("Not Exists");
                 dataGridViewCustomer.DataSource ="";
 
+            }
+            else if (customers2.Count==0)
+            {
+                MessageBox.Show("Not Exists");
+                dataGridViewCustomer.DataSource = "";
             }
             else
             {

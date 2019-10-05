@@ -130,5 +130,29 @@ namespace CustomerHome.Repository
             return customers;
 
         }
+        public List<Customer> SearchCustomersContact(Customer _customer)
+        {
+            List<Customer> customers = new List<Customer>();
+            string connectionString = @"Server=BRINTA-PC; Database=CustomersInformation; Integrated Security=True";
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            string commandString = @"select * from Customers where Contact='" + _customer.Contact + "'";
+            SqlCommand sqlCommand = new SqlCommand(commandString, sqlConnection);
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read())
+            {
+                Customer customer = new Customer();
+                //customer.Id = sqlDataReader["Id"].ToString();
+                customer.Code = sqlDataReader["Code"].ToString();
+                // customer.Name = sqlDataReader["Name"].ToString();
+                // customer.Address = sqlDataReader["Address"].ToString();
+                customer.Contact = sqlDataReader["Contact"].ToString();
+                // customer.District = sqlDataReader["District"].ToString();
+                customers.Add(customer);
+            }
+            sqlConnection.Close();
+            return customers;
+        }
+
     }
 }
