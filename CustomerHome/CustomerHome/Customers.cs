@@ -143,6 +143,7 @@ namespace CustomerHome
                 if (customers.Count==0)
                 {
                     dataGridViewCustomer.DataSource = _customerManager.UpdateCustomer(_customer);
+                    dataGridViewCustomer.DataSource = _customerManager.ShowCustomers(_customer);
                 }
                 else
                 {
