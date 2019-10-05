@@ -132,7 +132,22 @@ namespace CustomerHome
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            dataGridViewCustomer.DataSource = _customerManager.ShowAllCustomers(_customer);
+            try
+            {
+                _customer.Code = textBoxCode.Text;
+                _customer.Name = textBoxName.Text;
+                _customer.Address = textBoxAddress.Text;
+                _customer.Contact = textBoxContact.Text;
+                _customer.District = comboBoxDistrict.Text;
+                
+                dataGridViewCustomer.DataSource = _customerManager.UpdateCustomer(_customer);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                
+            }
+
         }
 
 
@@ -150,6 +165,12 @@ namespace CustomerHome
             textBoxAddress.Text= dataGridViewCustomer.SelectedRows[0].Cells[4].Value.ToString();
             textBoxContact.Text= dataGridViewCustomer.SelectedRows[0].Cells[5].Value.ToString();
             comboBoxDistrict.Text= dataGridViewCustomer.SelectedRows[0].Cells[6].Value.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dataGridViewCustomer.DataSource = _customerManager.ShowAllCustomers(_customer);
+
         }
     }
 }

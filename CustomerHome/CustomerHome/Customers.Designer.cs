@@ -57,6 +57,7 @@
             this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelDistrict = new System.Windows.Forms.Label();
             this.UpdateButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.districtBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
@@ -185,7 +186,7 @@
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(392, 303);
+            this.SearchButton.Location = new System.Drawing.Point(350, 298);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(106, 36);
             this.SearchButton.TabIndex = 7;
@@ -195,7 +196,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(544, 303);
+            this.SaveButton.Location = new System.Drawing.Point(502, 298);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(106, 36);
             this.SaveButton.TabIndex = 6;
@@ -293,7 +294,7 @@
             // 
             // UpdateButton
             // 
-            this.UpdateButton.Location = new System.Drawing.Point(693, 303);
+            this.UpdateButton.Location = new System.Drawing.Point(651, 298);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(98, 36);
             this.UpdateButton.TabIndex = 8;
@@ -301,11 +302,22 @@
             this.UpdateButton.UseVisualStyleBackColor = true;
             this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(846, 135);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(95, 41);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Customers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1099, 690);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.dataGridViewCustomer);
             this.Controls.Add(this.SaveButton);
@@ -366,6 +378,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn districtDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button button1;
     }
 }
 

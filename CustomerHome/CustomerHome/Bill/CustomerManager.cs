@@ -41,5 +41,10 @@ namespace CustomerHome.Bill
         {
             return _customerRepository.SearchCustomersContact(_customer);
         }
+
+        public List<Customer> UpdateCustomer(Customer _customer)
+        {
+            return _customerRepository.UpdateCustomer(_customer);
+        }
     }
 }

@@ -154,5 +154,37 @@ namespace CustomerHome.Repository
             return customers;
         }
 
+        public List<Customer> UpdateCustomer(Customer _customer)
+        {
+            List<Customer> customers=new List<Customer>();
+            string conn = @"Server=BRINTA-PC; Database=CustomersInformation; Integrated Security=true";
+            SqlConnection sqlConn = new SqlConnection(conn);
+            string command = @"update Customers set Code='" + _customer.Code + "',Name= '"+ _customer.Name + "',Address='"+_customer.Address+"',Contact='"+_customer.Contact+"',District='"+_customer.District+"'  where Code=" + _customer.Code + "";
+            SqlCommand sqlCommand = new SqlCommand(command, sqlConn);
+            sqlConn.Open();
+            bool isExecuted = Convert.ToBoolean(sqlCommand.ExecuteNonQuery());
+            if (isExecuted)
+            {
+                string command2 = @"select * from Customers where Code=" + _customer.Code + "";
+                SqlCommand sqlCommand2 = new SqlCommand(command2, sqlConn);
+              //  SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand2);
+              //  DataTable dataTable = new DataTable();
+              //  sqlDataAdapter.Fill(dataTable);
+              SqlDataReader sqlDataReader = sqlCommand2.ExecuteReader();
+              while (sqlDataReader.Read())
+              {
+                  Customer customer = new Customer();
+                  customer.Id = sqlDataReader["Id"].ToString();
+                  customer.Code = sqlDataReader["Code"].ToString();
+                  customer.Name = sqlDataReader["Name"].ToString();
+                  customer.Address = sqlDataReader["Address"].ToString();
+                  customer.Contact = sqlDataReader["Contact"].ToString();
+                  customer.District = sqlDataReader["District"].ToString();
+                  customers.Add(customer);
+                }
+            }
+            sqlConn.Close();
+            return customers ;
+        }
     }
 }
